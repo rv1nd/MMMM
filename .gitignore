@@ -1,0 +1,7 @@
+# Dotnet Core
+bin
+obj
+
+# VS Code
+.vscode
+*.code-workspace
