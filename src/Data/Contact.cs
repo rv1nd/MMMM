@@ -1,4 +1,7 @@
 using System.Text.Json;
+using MixERP.Net.VCards;
+using MixERP.Net.VCards.Models;
+using MixERP.Net.VCards.Types;
 
 namespace DanteMarshal.Utilities.Telegram.ContactsJsonToVCardConverter.Data
 {
@@ -33,6 +36,17 @@ namespace DanteMarshal.Utilities.Telegram.ContactsJsonToVCardConverter.Data
                     break;
             }
         }
-
+        internal VCard ToVCard()
+        {
+            var card = new VCard();
+            if (!string.IsNullOrWhiteSpace(this.FirstName))
+                card.FirstName = this.FirstName;
+            card.LastName = this.LastName;
+            var phone = new Telephone();
+            phone.Number = this.PhoneNumber;
+            phone.Type = TelephoneType.Cell;
+            card.Telephones = new Telephone[] { phone };
+            return card;
+        }
     }
 }
